@@ -36,9 +36,8 @@ The watermarker configuration file [watermarker.json](watermarker.json) contains
 
 An example of a watermarked assignment:
 
-![Sample Assignment](https://github.com/prof-tcsmith/watermarker/blob/main/assignments/assignment_XYZ123_1000111.png)
+The full sample PDF for student "John Doe" is found [here](https://github.com/prof-tcsmith/watermarker/tree/main/assignments/assignment_XYZ123_1000111.pdf) (NOTE: The file is encrypted, so it will not display in GitHub. You will need to download the file to view it with a pdf reader. The studen password to open the file for reading is 1234. Students have limited rights, and can only view the file. The admin password is 4321. Admins have full rights to the file. The admin pword is set by editing the json config file. The student pword is taken from the student csv file)
 
-The full sample PDF for student "John Doe" is found [here](https://github.com/prof-tcsmith/watermarker/tree/main/assignments/assignment_XYZ123_1000111.pdf) (NOTE: The file is encrypted, so it will not display in GitHub. You will need to download the file to view it with a pdf reader. The password to open the file for reading is 1234)
 
 ## Requirements
 
@@ -50,11 +49,6 @@ The full sample PDF for student "John Doe" is found [here](https://github.com/pr
 This project is under [active development](https://github.com/prof-tcsmith/watermarker/projects/1))
 
 Contributions are welcome! Please feel free to submit a Pull Request or suggest additional features/fixed by opening an [issue](https://github.com/prof-tcsmith/watermarker/issues).
-
-## Limitations
-
-* Assignments must not be more than 1 page (functionality for multiple pages will soon be added)
-
 
 ## Notes
 
