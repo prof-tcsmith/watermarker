@@ -36,7 +36,9 @@ The watermarker configuration file [watermarker.json](watermarker.json) contains
 
 An example of a watermarked assignment:
 
-The full sample PDF for student "John Doe" is found [here](https://github.com/prof-tcsmith/watermarker/tree/main/assignments/assignment_XYZ123_1000111.pdf) (NOTE: The file is encrypted, so it will not display in GitHub. You will need to download the file to view it with a pdf reader. The studen password to open the file for reading is 1234. Students have limited rights, and can only view the file. The admin password is 4321. Admins have full rights to the file. The admin pword is set by editing the json config file. The student pword is taken from the student csv file)
+The full sample PDF for student "John Doe" is found [here](https://github.com/prof-tcsmith/watermarker/blob/master/sample_assignment.pdf)
+
+> NOTE: The pdf file above is encrypted, so it will not display in GitHub. You will need to download the file to view it with a pdf reader. The studen password to open the file for reading is 1234. Students have limited rights, and can only view the file. The admin password is 4321. Admins have full rights to the file. The admin pword is set by editing the json config file. The student pword is taken from the student csv file)
 
 
 ## Requirements
