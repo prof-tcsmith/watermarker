@@ -56,7 +56,7 @@ Contributions are welcome! Please feel free to submit a Pull Request or suggest 
 
 > NOTE1: This software is 'alpha' - it's a fully functional program but does not yet have well-documented code or a user interface.
 
-> NOTE2: The content found in the Assignments and Watermarks folders are examples of the output produced by the program. The input file for the demo is hw2q01.pdf.
+> NOTE2: The content found in the Assignments and Watermarks folders are sample files to assist in testing. You need to provide your own csv data and input pdf.
 
 
 
