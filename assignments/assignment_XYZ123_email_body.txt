@@ -1,0 +1,10 @@
+Hello,
+
+This is the email body used to test the watermarker program.
+
+The code for this project can be found here: https://github.com/prof-tcsmith/watermarker
+
+The attached pdf is the student assignment.
+
+This assignment is protected. For this test, you must use the password 1234 to read the file.
+

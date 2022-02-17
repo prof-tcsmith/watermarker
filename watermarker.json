@@ -1,0 +1,14 @@
+{
+  "program_path": "C:\\Users\\timsmith\\PROJECTS\\watermarker",
+  "course_num": "XYZ123",
+  "students_csv_fname": "students_class01.csv",
+  "assignment_fname": "assignment_XYZ123.pdf",
+  "owner_pword": "4321",
+  "cc_list": "timsmith@iastate.edu",
+  "email_body_fname": "assignment_XYZ123_email_body.txt",
+  "watermarks_path": "watermarks",
+  "assignments_path": "assignments",
+  "sent_items_path": "sent_items",
+  "student_data_path": "student_data",
+  "sent_items_path": "sent_items"
+}
