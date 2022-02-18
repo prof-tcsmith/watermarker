@@ -30,6 +30,15 @@ The watermarker configuration file [watermarker.json](watermarker.json) contains
   * student_data_path - Subfolder name for where student information is stored (see sample [students_class_01.csv](https://github.com/prof-tcsmith/watermarker/tree/main/student_data/students_class01.csv)
   * sent_items_path - Subfolder where each of the generated pdf's will be stored.
 
+The following settings specify the color, opacity, font size and rotation of the watermark
+
+  * red - Red color value (0-1)
+  * green - Green color value (0-1)
+  * blue - Blue color value (0-1)
+  * opacity - Opacity value (0-1) 
+  * font_size - Font size 
+  * rotation - Rotation value (0-360)
+
 > NOTE: If any of the paths and/or files that you entered in the JSON file do not exist, the program will crash. Be sure to double-check that each exists before attempting to run the program.
 
 ## Sample output

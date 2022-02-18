@@ -10,5 +10,11 @@
   "assignments_path": "assignments",
   "sent_items_path": "sent_items",
   "student_data_path": "student_data",
-  "sent_items_path": "sent_items"
+  "sent_items_path": "sent_items",
+  "red": 0.05,
+  "green": 0.5,
+  "blue": 0.1,
+  "opacity": 0.1,
+  "font_size": 17,
+  "rotation": 30
 }

@@ -36,6 +36,13 @@ sent_items_path = configs['sent_items_path']
 student_data_path = configs['student_data_path']
 sent_items_path = configs['sent_items_path']
 
+# settings for watermarking
+red = configs['red']
+green = configs['green']
+blue = configs['blue']
+opacity = configs['opacity']
+font_size = configs['font_size']
+rotation = configs['rotation']
 
 ################################################################
 # define helper functions
@@ -61,7 +68,8 @@ def get_num_pages(assignment_fname):
     input_file.close()
     return num_pages
 
-def create_watermark(output_fname, student_id, student_name, pages=1):
+def create_watermark(output_fname, student_id, student_name, red=0.05, green=0.5, blue=0.1, opacity=0.1,
+                     font_size=17, rotation=30, pages=1):
     """
     Creates a watermark file based on student ID and student name.
 
@@ -74,10 +82,10 @@ def create_watermark(output_fname, student_id, student_name, pages=1):
 
     c = canvas.Canvas(output_fname)
     for page in range(pages):
-        c.setFont("Helvetica", 17)
-        c.rotate(30)
-        c.setFillColorRGB(0.05, 0.5, 0.1, 0.1)
-        for x in range(-300, 1200, 17):
+        c.setFont("Helvetica", font_size)
+        c.rotate(rotation)
+        c.setFillColorRGB(red, green, blue, opacity)
+        for x in range(-300, 1200, font_size):
             c.drawString(0, x, f'{student_name}-{student_id} '*10)
         c.showPage()
     c.save()
@@ -118,7 +126,7 @@ def create_merge(assignment_fname, watermark_fname, merged_fname, num_pages):
     assignment_file.close()
 
 
-def send_email(recipient, cc, subject, body, attachment, mail):
+def send_email(recipient, cc, subject, body, attachment):
     """
     Send email via Outlook client .
 
@@ -127,9 +135,15 @@ def send_email(recipient, cc, subject, body, attachment, mail):
     :param str subject: Subject of the email
     :param str body: Text body of the email (will also be used to create HTML body)
     :param str attachment: Full path to file to attach to email
-    :param obj mail: Win32 Com object that's initialized to Outlook
+
     """
-    print(f"..........{attachment}")
+    print(f"recipient - {recipient}")
+    print(f"cc - {cc}")
+    print(f"subject - {subject}")
+    print(f"attachment - {attachment}")
+    #        outlook = win32com.client.gencache.EnsureDispatch('outlook.application') # here connect with outlook client (which must be installed) # static com proxy
+    outlook = win32com.client.Dispatch('outlook.application')  # here connect with outlook client (which must be installed) # dynamic com proxy
+    mail = outlook.CreateItem(0)
     mail.To = recipient
     mail.Subject = subject
     mail.HTMLBody = f'<h3>{body}</h3>'
@@ -137,6 +151,7 @@ def send_email(recipient, cc, subject, body, attachment, mail):
     mail.CC = cc
     mail.Attachments.Add(attachment)
     mail.Send()
+
 
 def encrypt(writer_obj: PdfFileWriter, user_pwd, owner_pwd=None, use_128bit=True):
     """
@@ -197,9 +212,9 @@ if __name__ == '__main__':
     num_pages = get_num_pages(f"{assignments_path}\\{assignment_fname}") # get the number of pages in the assignment pdf
 
     for student in students:
-        print(f"Processing {student}")
         print("\n"+"#"*80)
-        print(f"Processing student: {student['name']}")
+        print(f"Processing {student}")
+
 
 
         # check the send value, if 0, then this student is skipped
@@ -215,7 +230,13 @@ if __name__ == '__main__':
         create_watermark(output_fname=f"{watermarks_path}\\{student['name'].replace(' ', '_')}_{student['id']}.pdf",
                          student_id=student['id'],
                          student_name=student['name'], # user student's first name
-                         pages = num_pages
+                         pages = num_pages,
+                         red=red,
+                         blue=blue,
+                         green=green,
+                         opacity=opacity,
+                         font_size=font_size,
+                         rotation=rotation
         )
         create_merge(assignment_fname = f"{assignments_path}\\{assignment_fname}",
                      watermark_fname = f"{watermarks_path}\\{student['name'].replace(' ', '_'):s}_{student['id']:s}.pdf",
@@ -241,19 +262,17 @@ if __name__ == '__main__':
         with open(f"{assignments_path}\\{email_body_fname}") as fin:
             email_body = fin.read()
 
-        outlook = win32com.client.Dispatch('outlook.application') # here connect with outlook client (which must be installed)
         send_email(recipient=student['email'],
                    cc=cc_list,
                    subject=f"[{course_num} Assignment Bot] {assignment_fname.split('.')[0]} [studentID={student['id']}]",
                    body=f"{email_body}",
-                   attachment=f"{program_path}\\{sent_items_path}\\{assignment_fname.split('.')[0]}_{student['id']}.pdf", # need full path here
-                   mail=outlook.CreateItem(0)
+                   attachment=f"{program_path}\\{sent_items_path}\\{assignment_fname.split('.')[0]}_{student['id']}.pdf" # need full path here
              )
 
-        # initial test indicated that without a pause, outlook may miss sending some emails.
-        # I've not had issues with a 0.5 second delay
-        # TODO: try to eliminate the need for delay in send loop
         print("Finished processing student ", student['name'])
+
+        # initial test indicated that without a pause, outlook may miss sending some emails.
+        # TODO: try to eliminate the need for delay in send loop
         time.sleep(0.5)
 
 input("\nAll students processed. Hit return to exit the program.")
