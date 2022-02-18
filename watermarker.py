@@ -129,6 +129,7 @@ def send_email(recipient, cc, subject, body, attachment, mail):
     :param str attachment: Full path to file to attach to email
     :param obj mail: Win32 Com object that's initialized to Outlook
     """
+    print(f"..........{attachment}")
     mail.To = recipient
     mail.Subject = subject
     mail.HTMLBody = f'<h3>{body}</h3>'
